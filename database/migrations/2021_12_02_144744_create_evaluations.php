@@ -22,6 +22,7 @@ class CreateEvaluations extends Migration
             $table->integer('value_5');
             $table->integer('sum');
             $table->text('memo')->nullable();
+            $table->softDeletes();
             $table->timestamps();
             $table->unsignedBigInteger('employee_id');
             $table->unsignedBigInteger('user_id');

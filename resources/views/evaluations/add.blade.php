@@ -16,17 +16,21 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <form action="">
+                                <form action="{{ route('evaluations.store') }}" method="POST">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="">Nama Karyawan</label>
-                                            <select name="" id="" class="form-control">
+                                            <select name="employee_id" class="form-control">
                                                 <option value="">-- Pilih Karyawan --</option>
+                                                @foreach ($employees as $employee)
+                                                    <option value="{{ $employee->id }}">{{ $employee->fullname }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="offset-2 text-center col-md-3 border rounded">
                                             <p style="font-size: 20px;">Total Nilai</p>
-                                            <p id="result" style="font-size: 20px; font-weight: bold;">62</p>
+                                            <p id="result" style="font-size: 20px; font-weight: bold;">0</p>
                                         </div>
                                         <hr style="color: black;" width="100%;">
                                         <div class="row mr-2 ml-2">
@@ -39,7 +43,7 @@
                                                     <option value="3">3</option>
                                                     <option value="4">4</option>
                                                 </select>
-                                            </div>
+                                        </div>
                                             <div class="col-md-6">
                                                 <h5> Hasil Kerja </h5>
                                                 <select name="value2" id="value2" class="col-md-12 form-control">
@@ -70,15 +74,23 @@
                                                     <option value="4">4</option>
                                                 </select>
                                             </div>
-                                            <div class="col-md-12 mt-4">
+                                            <div class="col-md-6 mt-4">
                                                 <h5> Sikap / Perilaku </h5>
-                                                <select name="value5" id="value5" class="col-md-6 form-control">
+                                                <select name="value5" id="value5" class="col-md-12 form-control">
                                                     <option value="">-- Nilai Sikap / Perilaku --</option>
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
                                                     <option value="3">3</option>
                                                     <option value="4">4</option>
                                                 </select>
+                                            </div>
+                                            <div class="col-md-6 mt-4">
+                                                <h5> Memo </h5>
+                                              <input class="form-control" type="text" name="memo" placeholder="memo">
+                                            </div>
+                                            <div class="col-md-12 mt-3">
+                                                <a href="{{ route('evaluations.index') }}" class="btn btn-secondary btn-sm rounded">Kembali</a>
+                                                <button class="btn btn-success btn-sm rounded">Submit</button>
                                             </div>
                                         </div>
                                     </div>

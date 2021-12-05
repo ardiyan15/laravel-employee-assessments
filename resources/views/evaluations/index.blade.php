@@ -17,7 +17,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <a href="{{ route('evaluations.create') }}"
-                                    class="btn btn-primary btn-sm rounded pull-right">Tambah Penilaian</a>
+                                    class="btn btn-primary btn-sm rounded pull-right">Tambah Penilaian </a>
                             </div>
                             <div class="card-body">
                                 <table id="table" class="table table-bordered table-striped">
@@ -33,7 +33,25 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-
+                                        @foreach ($evaluations as $evaluation)
+                                            <tr>
+                                                <td class="text-center">{{ $loop->iteration }}</td>
+                                                <td class="text-center">{{ $evaluation->employees->nip }}</td>
+                                                <td class="text-center">{{ $evaluation->employees->fullname }}</td>
+                                                <td class="text-center">A</td>
+                                                <td class="text-center">{{ $evaluation->users->username }}</td>
+                                                <td class="text-center">{{ $evaluation->created_at }}</td>
+                                                <td class="text-center">
+                                                    <form action="{{ route('evaluations.destroy', $evaluation->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <a href="{{ route('evaluations.edit', $evaluation->id) }}" class="btn btn-info btn-sm rounded">Edit</a>
+                                                        <button onclick="return confirm('Ingin menghapus data?')"
+                                                        class="btn btn-danger btn-sm rounded delete-confirm">Hapus</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

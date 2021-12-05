@@ -16,4 +16,9 @@ class Employees extends Model
     {
         return $this->belongsTo(Sub_divisions::class, 'sub_division_id');
     }
+
+    public function evaluations()
+    {
+        return $this->hasMany(Evaluations::class, 'employee_id');
+    }
 }

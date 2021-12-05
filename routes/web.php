@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContractController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\EvaluationController;
@@ -12,7 +13,12 @@ Route::resource('/divisions', DivisionController::class);
 Route::resource('/subdivisions', SubDivisionsController::class);
 Route::resource('/employees', EmployeeController::class);
 Route::resource('/evaluations', EvaluationController::class);
+Route::resource('/contracts', ContractController::class);
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
