@@ -41,14 +41,6 @@
                                 <p>Sub Divisi</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <form action="">
-                                <button class="nav-link btn btn-sm">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    Logout
-                                </button>
-                            </form>
-                        </li>
                     </ul>
                 </li>
                 <li class="nav-item menu-open">
@@ -72,16 +64,27 @@
                                 <p>Kontrak Karyawan</p>
                             </a>
                         </li>
+                    </ul>
+                </li>
+                <li class="nav-item menu-open">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Laporan
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('divisions.index') }}" class="nav-link">
+                            <a href="{{ route('report.reportdivisionemployee') }}" class="nav-link active">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Divisi</p>
+                                <p>Karyawan Perdivisi</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('subdivisions.index') }}" class="nav-link">
+                            <a href="{{ route('report.employeestatus') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Sub Divisi</p>
+                                <p>Karyawan IN / OFF</p>
                             </a>
                         </li>
                     </ul>

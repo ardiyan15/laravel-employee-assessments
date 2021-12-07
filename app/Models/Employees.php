@@ -21,4 +21,9 @@ class Employees extends Model
     {
         return $this->hasMany(Evaluations::class, 'employee_id');
     }
+
+    public function contract()
+    {
+        return $this->hasOne(Contracts::class, 'employee_id');
+    }
 }

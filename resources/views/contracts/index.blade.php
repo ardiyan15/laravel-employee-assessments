@@ -24,14 +24,35 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center">#</th>
-                                            <th class="text-center">Username</th>
-                                            <th class="text-center">Roles</th>
+                                            <th class="text-center">NIP</th>
+                                            <th class="text-center">Karyawan</th>
+                                            <th class="text-center">Jabatan</th>
                                             <th class="text-center">Tanggal Dibuat</th>
                                             <th class="text-center">Opsi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                      
+                                        @foreach ($contracts as $contract)
+                                            <tr>
+                                                <td class="text-center">{{ $loop->iteration }}</td>
+                                                <td class="text-center">{{ $contract->employee->nip }}</td>
+                                                <td class="text-center">{{ $contract->employee->fullname }}</td>
+                                                <td class="text-center">{{ $contract->employee->sub_division->name }}
+                                                </td>
+                                                <td class="text-center">{{ $contract->created_at }}</td>
+                                                <td class="text-center">
+                                                    <form action="{{ route('contracts.destroy', $contract->id) }}"
+                                                        method="POST">
+                                                        <a href="{{ route('contracts.edit', $contract->id) }}"
+                                                            class="btn btn-info btn-sm rounded">Ubah</a>
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button onclick="return confirm('Ingin menghapus data?')"
+                                                            class="btn btn-danger btn-sm rounded delete-confirm">Hapus</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
