@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class ReportEmployee extends Controller
 {
+    protected $menu = 'laporan';
     public function reportDivisionEmployee(Request $request)
     {
         $divisions = Divisions::orderBy('id', 'DESC')->get();
@@ -23,6 +24,8 @@ class ReportEmployee extends Controller
                 ->get();
 
             $data = [
+                'menu' => $this->menu,
+                'sub_menu' => 'div_employee',
                 'divisions' => $divisions,
                 'employees' => $employees
             ];
@@ -30,6 +33,8 @@ class ReportEmployee extends Controller
             return view('reports.division')->with($data);
         } else {
             $data = [
+                'menu' => $this->menu,
+                'sub_menu' => 'div_employee',
                 'divisions' => $divisions,
                 'employees' => $employees
             ];
@@ -44,6 +49,8 @@ class ReportEmployee extends Controller
             $employees = Employees::where('status', $request->status)->orderBy('id', 'DESC')->get();
 
             $data = [
+                'menu' => $this->menu,
+                'sub_menu' => 'status',
                 'employees' => $employees
             ];
 
@@ -51,6 +58,8 @@ class ReportEmployee extends Controller
         } else {
 
             $data = [
+                'menu' => $this->menu,
+                'sub_menu' => 'status',
                 'employees' => $employees
             ];
             return view('reports.status')->with($data);

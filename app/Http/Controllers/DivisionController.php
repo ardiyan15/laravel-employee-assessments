@@ -7,9 +7,14 @@ use Illuminate\Http\Request;
 
 class DivisionController extends Controller
 {
+    protected $menu = 'master';
+    protected $sub_menu = 'divisi';
+
     public function index()
     {
         $data = [
+            'menu' => $this->menu,
+            'sub_menu' => $this->sub_menu,
             'divisions' => Divisions::orderBy('id', 'DESC')->get()
         ];
 
@@ -38,6 +43,8 @@ class DivisionController extends Controller
     public function edit($id)
     {
         $data = [
+            'menu' => $this->menu,
+            'sub_menu' => $this->sub_menu,
             'division' => Divisions::findOrFail($id)
         ];
         return view('divisions.edit')->with($data);

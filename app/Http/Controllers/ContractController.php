@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\DB;
 
 class ContractController extends Controller
 {
+    protected $menu = 'transaksi';
+    protected $sub_menu = 'kontrak';
+
     public function index()
     {
         $contracts = Contracts::with(['employee' => function ($employee) {
@@ -16,6 +19,8 @@ class ContractController extends Controller
         }])->orderBy('id', 'DESC')->get();
 
         $data = [
+            'menu' => $this->menu,
+            'sub_menu' => $this->sub_menu,
             'contracts' => $contracts
         ];
 
@@ -25,6 +30,8 @@ class ContractController extends Controller
     public function create()
     {
         $data = [
+            'menu' => $this->menu,
+            'sub_menu' => $this->sub_menu,
             'employees' => Employees::orderBy('id', 'DESC')->get()
         ];
         return view('contracts.add')->with($data);
@@ -58,6 +65,8 @@ class ContractController extends Controller
         $employees = Employees::orderBy('id', 'DESC')->get();
 
         $data = [
+            'menu' => $this->menu,
+            'sub_menu' => $this->sub_menu,
             'contract' => $contract,
             'employees' => $employees
         ];

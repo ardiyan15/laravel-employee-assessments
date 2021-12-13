@@ -9,10 +9,14 @@ use Illuminate\Support\Facades\DB;
 
 class EmployeeController extends Controller
 {
+    protected $menu = 'master';
+    protected $sub_menu = 'karyawan';
 
     public function index()
     {
         $data = [
+            'menu' => $this->menu,
+            'sub_menu' => $this->sub_menu,
             'employees' => Employees::with('sub_division')->orderBy('id', 'DESC')->get()
         ];
 
@@ -22,6 +26,8 @@ class EmployeeController extends Controller
     public function create()
     {
         $data = [
+            'menu' => $this->menu,
+            'sub_menu' => $this->sub_menu,
             'sub_divisions' => Sub_divisions::orderBy('id', 'DESC')->get()
         ];
 
@@ -94,6 +100,8 @@ class EmployeeController extends Controller
         ];
 
         $data = [
+            'menu' => $this->menu,
+            'sub_menu' => $this->sub_menu,
             'employee' => $employee,
             'sub_divisions' => $sub_divisions,
             'religions' => $religions,

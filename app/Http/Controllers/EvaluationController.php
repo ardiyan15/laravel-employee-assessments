@@ -10,9 +10,14 @@ use Illuminate\Support\Facades\DB;
 
 class EvaluationController extends Controller
 {
+    protected $menu = 'transaksi';
+    protected $sub_menu = 'nilai';
+
     public function index()
     {
         $data = [
+            'menu' => $this->menu,
+            'sub_menu' => $this->sub_menu,
             'evaluations' => Evaluations::with('users', 'employees')->orderBy('id', 'DESC')->get()
         ];
 
@@ -22,6 +27,8 @@ class EvaluationController extends Controller
     public function create()
     {
         $data = [
+            'menu' => $this->menu,
+            'sub_menu' => $this->sub_menu,
             'employees' => Employees::orderBy('id', 'DESC')->get()
         ];
 
@@ -65,6 +72,8 @@ class EvaluationController extends Controller
         $evaluation = Evaluations::with('employees')->findOrFail($id);
 
         $data = [
+            'menu' => $this->menu,
+            'sub_menu' => $this->sub_menu,
             'evaluation' => $evaluation,
             'employees' => $employees,
             'values' => $values

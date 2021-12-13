@@ -8,9 +8,14 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    protected $menu = 'master';
+    protected $sub_menu = 'user';
+
     public function index()
     {
         $data = [
+            'menu' => $this->menu,
+            'sub_menu' => $this->sub_menu,
             'users' => User::orderBy('id', 'DESC')->get()
         ];
         return view('users.index')->with($data);
@@ -18,7 +23,11 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('users.add');
+        $data = [
+            'menu' => $this->menu,
+            'sub_menu' => $this->sub_menu
+        ];
+        return view('users.add')->with($data);
     }
 
     public function store(Request $request)
@@ -55,6 +64,8 @@ class UserController extends Controller
         ];
 
         $data = [
+            'menu' => $this->menu,
+            'sub_menu' => $this->sub_menu,
             'user' => User::findOrFail($id),
             'roles' => $roles
         ];

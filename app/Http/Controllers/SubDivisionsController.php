@@ -9,9 +9,14 @@ use Illuminate\Support\Facades\DB;
 
 class SubDivisionsController extends Controller
 {
+    protected $menu = 'master';
+    protected $sub_menu = 'sub_divisi';
+
     public function index()
     {
         $data = [
+            'menu' => $this->menu,
+            'sub_menu' => $this->sub_menu,
             'divisions' => Divisions::orderBy('id', 'DESC')->get(),
             'sub_divisions' => Sub_divisions::with('divisions')->orderBy('id', 'DESC')->get()
         ];
@@ -45,6 +50,8 @@ class SubDivisionsController extends Controller
         $divisions = Divisions::orderBy('id', 'DESC')->get();
 
         $data = [
+            'menu' => $this->menu,
+            'sub_menu' => $this->sub_menu,
             'sub_division' => $sub_division,
             'divisions' => $divisions
         ];

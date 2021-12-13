@@ -23,6 +23,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $data = [
+            'menu' => 'dashboard',
+            'sub_menu' => ''
+        ];
+        return view('home')->with($data);
     }
 }
