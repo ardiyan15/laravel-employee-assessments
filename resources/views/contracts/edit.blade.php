@@ -5,7 +5,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Tambah User</h1>
+                        <h1>Ubah Kontrak</h1>
                     </div>
                 </div>
             </div>
@@ -16,8 +16,9 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <form action="{{ route('contracts.store') }}" method="POST">
+                                <form action="{{ route('contracts.update', $contract->id) }}" method="POST">
                                     @csrf
+                                    @method('PATCH')
                                     <div class="row">
                                         <div class="col-md-12 form-group">
                                             <label for="">Karyawan</label>
@@ -38,13 +39,15 @@
                                         </div>
                                         <div class="col-md-12">
                                             <textarea name="content" id="content" placeholder="Kontrak Karyawan">
-                                                                {{ $contract->content }}
-                                                        </textarea>
+                                                                        {{ $contract->content }}
+                                                                    </textarea>
                                         </div>
                                     </div>
-                                    <button class="btn btn-success btn-sm rounded">Simpan</button>
-                                    <a href="{{ route('contracts.index') }}"
-                                        class="btn btn-secondary btn-sm rounded">Kembali</a>
+                                    <div class="mt-2">
+                                        <button class="btn btn-success btn-sm rounded">Simpan</button>
+                                        <a href="{{ route('contracts.index') }}"
+                                            class="btn btn-secondary btn-sm rounded">Kembali</a>
+                                    </div>
                                 </form>
                             </div>
                         </div>

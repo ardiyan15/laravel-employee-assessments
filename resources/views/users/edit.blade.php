@@ -21,6 +21,11 @@
                                     @method('PATCH')
                                     <div class="row">
                                         <div class="col-md-6 form-group">
+                                            <label for="">Nama Lengkap</label>
+                                            <input class="form-control" type="text" name="fullname"
+                                                placeholder="nama lengkap" value="{{ $user->username }}" required>
+                                        </div>
+                                        <div class="col-md-6 form-group">
                                             <label for="">Username</label>
                                             <input class="form-control" type="text" name="username" placeholder="username"
                                                 value="{{ $user->username }}" required>

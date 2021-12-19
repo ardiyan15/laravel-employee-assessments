@@ -21,4 +21,9 @@ class Sub_divisions extends Model
     {
         return $this->hasMany(Employees::class, 'sub_division_id');
     }
+
+    public function managers()
+    {
+        return $this->hasMany(Managers::class, 'sub_division_id');
+    }
 }

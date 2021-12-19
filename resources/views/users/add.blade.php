@@ -20,6 +20,11 @@
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-6 form-group">
+                                            <label for="">Nama Lengkap</label>
+                                            <input class="form-control" type="text" name="fullname"
+                                                placeholder="Nama Lengkap" required>
+                                        </div>
+                                        <div class="col-md-6 form-group">
                                             <label for="">Username</label>
                                             <input class="form-control" type="text" name="username" placeholder="username"
                                                 required>
@@ -41,7 +46,7 @@
                                     </div>
                                     <button class="btn btn-success btn-sm rounded">Simpan</button>
                                     <a href="{{ route('users.index') }}"
-                                        class="btn btn-default btn-sm rounded">Kembali</a>
+                                        class="btn btn-secondary btn-sm rounded">Kembali</a>
                                 </form>
                             </div>
                         </div>

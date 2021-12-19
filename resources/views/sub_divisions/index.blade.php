@@ -5,7 +5,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Master Jabatan</h1>
+                        <h1>Master Divisi</h1>
                     </div>
                 </div>
             </div>
@@ -18,7 +18,7 @@
                             <div class="card-header">
                                 <button type="button" class="btn btn-primary btn-sm rounded" data-toggle="modal"
                                     data-target="#exampleModal">
-                                    Tambah Jabatan
+                                    Tambah Divisi
                                 </button>
                             </div>
                             <div class="card-body">
@@ -26,8 +26,8 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center">#</th>
-                                            <th class="text-center">Jabatan</th>
                                             <th class="text-center">Divisi</th>
+                                            <th class="text-center">Departemen</th>
                                             <th class="text-center">Tanggal Dibuat</th>
                                             <th class="text-center">Opsi</th>
                                         </tr>

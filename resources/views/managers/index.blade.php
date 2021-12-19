@@ -5,7 +5,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Master User</h1>
+                        <h1>Master Manager</h1>
                     </div>
                 </div>
             </div>
@@ -16,8 +16,8 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <a href="{{ route('users.create') }}"
-                                    class="btn btn-primary btn-sm rounded pull-right">Tambah User</a>
+                                <button data-toggle="modal" data-target="#addManager"
+                                    class="btn btn-primary btn-sm rounded pull-right">Tambah Manager</button>
                             </div>
                             <div class="card-body">
                                 <table id="table" class="table table-bordered table-striped">
@@ -30,7 +30,24 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-
+                                        @foreach ($managers as $manager)
+                                            <tr>
+                                                <td class="text-center">{{ $loop->iteration }}</td>
+                                                <td class="text-center">{{ $manager->users->fullname }}</td>
+                                                <td class="text-center">{{ $manager->divisions->name }}</td>
+                                                <td class="text-center">
+                                                    <form action="{{ route('managers.destroy', $manager->id) }}"
+                                                        method="POST">
+                                                        <a href="{{ route('managers.edit', $manager->id) }}"
+                                                            class="btn btn-info btn-sm rounded">Ubah</a>
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button onclick="return confirm('Ingin menghapus data?')"
+                                                            class="btn btn-danger btn-sm rounded delete-confirm">Hapus</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -39,5 +56,45 @@
                 </div>
             </div>
         </section>
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="addManager">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tambah Manager</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('managers.store') }}" method="POST">
+                    <div class="modal-body">
+                        @csrf
+                        <div class="form-group">
+                            <label for="">Manager</label>
+                            <select class="form-control" name="user_id">
+                                <option value="" selected>- Pilih Manager --</option>
+                                @foreach ($users as $user)
+                                    <option value="{{ $user->id }}">{{ $user->fullname }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Divisi</label>
+                            <select class="form-control" name="sub_division_id">
+                                <option value="" selected>- Pilih Divisi --</option>
+                                @foreach ($divisions as $division)
+                                    <option value="{{ $division->id }}">{{ $division->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success btn-sm rounded">Simpan</button>
+                        <button type="button" class="btn btn-secondary btn-sm rounded" data-dismiss="modal">Batal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 @endsection

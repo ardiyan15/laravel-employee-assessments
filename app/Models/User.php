@@ -49,4 +49,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Evaluations::class, 'user_id');
     }
+
+    public function managers()
+    {
+        return $this->hasMany(Managers::class, 'user_id');
+    }
 }

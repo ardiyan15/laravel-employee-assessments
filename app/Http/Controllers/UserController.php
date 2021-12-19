@@ -34,6 +34,7 @@ class UserController extends Controller
     {
         User::create([
             'username' => $request->username,
+            'fullname' => $request->fullname,
             'password' => Hash::make($request->password),
             'roles' => $request->roles
         ]);
@@ -77,6 +78,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $user->username = $request->username;
+        $user->fullname = $request->fullname;
         if ($request->password) {
             $user->passowrd = $request->password;
         }

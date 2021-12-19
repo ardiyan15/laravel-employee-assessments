@@ -26,10 +26,15 @@ class EvaluationController extends Controller
 
     public function create()
     {
+        $division_id = [];
+        foreach (Auth::user()->managers as $manager) {
+            array_push($division_id, $manager->sub_division_id);
+        }
+
         $data = [
             'menu' => $this->menu,
             'sub_menu' => $this->sub_menu,
-            'employees' => Employees::orderBy('id', 'DESC')->get()
+            'employees' => Employees::whereIn('sub_division_id', $division_id)->orderBy('id', 'DESC')->get()
         ];
 
         return view('evaluations.add')->with($data);

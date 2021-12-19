@@ -10,6 +10,7 @@ use App\Http\Controllers\SubDivisionsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/contract/print/{id}', [ContractController::class, 'print'])->name('contracts.print');
 Route::resource('/users', UserController::class);
 Route::resource('/divisions', DivisionController::class);
 Route::resource('/subdivisions', SubDivisionsController::class);
@@ -19,6 +20,7 @@ Route::resource('/contracts', ContractController::class);
 Route::resource('/managers', ManagerController::class);
 Route::get('/reportdivisionemployee', [ReportEmployee::class, 'reportdivisionemployee'])->name('report.reportdivisionemployee');
 Route::get('/report', [ReportEmployee::class, 'report'])->name('report.employeestatus');
+Route::get('/report/print/{id}', [ReportEmployee::class, 'print'])->name('reports.print');
 
 Route::get('/', function () {
     return view('auth.login');

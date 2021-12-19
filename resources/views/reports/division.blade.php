@@ -29,6 +29,10 @@
                                             <button class="btn btn-primary btn-sm rounded mt-2">Submit</button>
                                             <a href="{{ route('report.reportdivisionemployee') }}"
                                                 class="btn btn-secondary btn-sm rounded mt-2">Reset</a>
+                                            @if ($division_id)
+                                                <a href="{{ route('reports.print', $division_id) }}"
+                                                    class="btn btn-success btn-sm rounded mt-2" target="_blank">Print</a>
+                                            @endif
                                         </form>
                                     </div>
                                 </div>
@@ -48,7 +52,7 @@
                                                 <td class="text-center">{{ $loop->iteration }}</td>
                                                 <td class="text-center">{{ $employee->nip }}</td>
                                                 <td class="text-center">{{ $employee->fullname }}</td>
-                                                <td class="text-center">{{ $employee->name }}</td>
+                                                <td class="text-center">{{ $employee->sub_division->name }}</td>
                                                 <td class="text-center">{{ $employee->address }}</td>
                                             </tr>
                                         @empty

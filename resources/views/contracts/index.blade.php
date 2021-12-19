@@ -49,6 +49,8 @@
                                                         @method('DELETE')
                                                         <button onclick="return confirm('Ingin menghapus data?')"
                                                             class="btn btn-danger btn-sm rounded delete-confirm">Hapus</button>
+                                                        <a href="{{ route('contracts.show', $contract->id) }}"
+                                                            class="btn btn-primary btn-sm rounded">Detail</a>
                                                     </form>
                                                 </td>
                                             </tr>

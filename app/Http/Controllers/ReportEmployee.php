@@ -2,32 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Divisions;
 use App\Models\Employees;
+use App\Models\Sub_divisions;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use PDF;
 
 class ReportEmployee extends Controller
 {
     protected $menu = 'laporan';
     public function reportDivisionEmployee(Request $request)
     {
-        $divisions = Divisions::orderBy('id', 'DESC')->get();
+        $divisions = Sub_divisions::orderBy('id', 'DESC')->get();
         $employees = [];
         if ($request->division_id) {
             $division_id = $request->division_id;
 
-            $employees = DB::table('employees')
-                ->select('employees.nip', 'employees.fullname', 'sub_divisions.name', 'employees.address')
-                ->join('sub_divisions', 'sub_divisions.id', '=', 'employees.sub_division_id')
-                ->where('sub_divisions.id', '=', $division_id)
-                ->get();
+            $employees = Employees::with('sub_division')->where('sub_division_id', $division_id)->orderBy('id', 'DESC')->get();
 
             $data = [
                 'menu' => $this->menu,
                 'sub_menu' => 'div_employee',
                 'divisions' => $divisions,
-                'employees' => $employees
+                'employees' => $employees,
+                'division_id' => $division_id
             ];
 
             return view('reports.division')->with($data);
@@ -36,7 +33,8 @@ class ReportEmployee extends Controller
                 'menu' => $this->menu,
                 'sub_menu' => 'div_employee',
                 'divisions' => $divisions,
-                'employees' => $employees
+                'employees' => $employees,
+                'division_id' => ''
             ];
             return view('reports.division')->with($data);
         }
@@ -64,5 +62,13 @@ class ReportEmployee extends Controller
             ];
             return view('reports.status')->with($data);
         }
+    }
+
+    public function print($data)
+    {
+        $employees = Employees::with('sub_division')->where('sub_division_id', $data)->get();
+
+        $pdf = PDF::loadview('reports.print', ['employees' => $employees]);
+        return $pdf->stream();
     }
 }

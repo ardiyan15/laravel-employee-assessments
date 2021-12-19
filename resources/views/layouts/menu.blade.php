@@ -67,17 +67,17 @@
                     <li class="nav-item">
                         <a href="{{ route('divisions.index') }}" class="nav-link @if ($sub_menu === 'divisi') active @endif">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Divisi</p>
+                            <p>Departemen</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('subdivisions.index') }}" class="nav-link @if ($sub_menu === 'sub_divisi') active @endif">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Sub Divisi</p>
+                            <p>Divisi</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('managers.index') }}" class="nav-link @if ($sub_menu === 'sub_divisi') active @endif">
+                        <a href="{{ route('managers.index') }}" class="nav-link @if ($sub_menu === 'manager') active @endif">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Manager</p>
                         </a>
