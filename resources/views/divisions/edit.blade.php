@@ -5,7 +5,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Master Divisi</h1>
+                        <h1>Master Departemen</h1>
                     </div>
                 </div>
             </div>
@@ -20,7 +20,7 @@
                                     @csrf
                                     @method('PATCH')
                                     <div class="form-group">
-                                        <label for="">Nama Divisi</label>
+                                        <label for="">Nama Departmen</label>
                                         <input class="form-control mb-3" type="text" name="name"
                                             value="{{ $division->name }}">
                                         <a href="{{ route('divisions.index') }}"

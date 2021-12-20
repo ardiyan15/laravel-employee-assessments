@@ -22,16 +22,16 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Nama Jabatan</label>
+                                                <label>Nama Divisi</label>
                                                 <input class="form-control mb-3" type="text" name="name"
                                                     value="{{ $sub_division->name }}">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Divisi</label>
+                                                <label>Departemen</label>
                                                 <select name="division_id" class="form-control">
-                                                    <option value="">-- Pilih Divisi --</option>
+                                                    <option value="">-- Pilih Departemen --</option>
                                                     @foreach ($divisions as $division)
                                                         @if ($division->id === $sub_division->division_id)
                                                             <option value="{{ $division->id }}" selected>

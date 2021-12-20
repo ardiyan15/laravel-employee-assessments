@@ -77,16 +77,16 @@
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>Divisi</label>
+                            <label>Departemen</label>
                             <select name="division_id" class="form-control">
-                                <option value="">-- Pilih Divisi --</option>
+                                <option value="">-- Pilih Departemen --</option>
                                 @foreach ($divisions as $division)
                                     <option value="{{ $division->id }}">{{ $division->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="">Nama Sub Divisi</label>
+                            <label for="">Nama Divisi</label>
                             <input class="form-control" type="text" name="name" placeholder="Nama Divisi">
                         </div>
                     </div>
