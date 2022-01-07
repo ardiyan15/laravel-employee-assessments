@@ -5,7 +5,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Master Departemen</h1>
+                        <h1>Edit Departemen</h1>
                     </div>
                 </div>
             </div>

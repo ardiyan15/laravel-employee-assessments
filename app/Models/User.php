@@ -54,4 +54,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Managers::class, 'user_id');
     }
+
+    public function supervisors()
+    {
+        return $this->hasMany(Supervisor::class, 'user_id');
+    }
 }

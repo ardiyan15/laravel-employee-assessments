@@ -26,4 +26,9 @@ class Sub_divisions extends Model
     {
         return $this->hasMany(Managers::class, 'sub_division_id');
     }
+
+    public function supervisors()
+    {
+        return $this->hasMany(Supervisor::class, 'sub_division_id');
+    }
 }

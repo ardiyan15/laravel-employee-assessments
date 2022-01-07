@@ -33,7 +33,7 @@ class ContractController extends Controller
         $data = [
             'menu' => $this->menu,
             'sub_menu' => $this->sub_menu,
-            'employees' => Employees::orderBy('id', 'DESC')->get()
+            'employees' => Employees::doesntHave('contract')->orderBy('id', 'DESC')->get()
         ];
         return view('contracts.add')->with($data);
     }
@@ -42,9 +42,17 @@ class ContractController extends Controller
     {
         DB::beginTransaction();
         try {
+            if ($request->start_date == '' && $request->end_date == '') {
+                $permanent = true;
+            } else {
+                $permanent = false;
+            }
             Contracts::create([
                 'content' => $request->content,
-                'employee_id' => $request->employee_id
+                'employee_id' => $request->employee_id,
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date,
+                'is_permanent' => $permanent
             ]);
             DB::commit();
             return redirect('contracts')->with('success', 'Kontrak berhasil dibuat');
@@ -88,6 +96,8 @@ class ContractController extends Controller
         try {
             $contract->employee_id = $request->employee_id;
             $contract->content = $request->content;
+            $contract->start_date = $request->start_date;
+            $contract->end_date = $request->end_date;
             $contract->save();
             DB::commit();
             return redirect('contracts')->with('success', 'Kontrak berhasil diubah');

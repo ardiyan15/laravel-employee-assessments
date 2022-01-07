@@ -61,6 +61,10 @@ class UserController extends Controller
             2 => [
                 'name' => 'Direktur',
                 'value' => 'direktur'
+            ],
+            3 => [
+                'name' => 'Supervisor',
+                'value' => 'supervisor'
             ]
         ];
 

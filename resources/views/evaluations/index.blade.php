@@ -29,6 +29,7 @@
                                             <th class="text-center">Grade</th>
                                             <th class="text-center">Penilai</th>
                                             <th class="text-center">Tanggal Dibuat</th>
+                                            <th class="text-center">Status</th>
                                             <th class="text-center">Opsi</th>
                                         </tr>
                                     </thead>
@@ -38,16 +39,30 @@
                                                 <td class="text-center">{{ $loop->iteration }}</td>
                                                 <td class="text-center">{{ $evaluation->employees->nip }}</td>
                                                 <td class="text-center">{{ $evaluation->employees->fullname }}</td>
-                                                <td class="text-center">A</td>
-                                                <td class="text-center">{{ $evaluation->users->username }}</td>
+                                                <td class="text-center">{{ $evaluation->grade }}</td>
+                                                <td class="text-center">{{ $evaluation->users->fullname }}</td>
                                                 <td class="text-center">{{ $evaluation->created_at }}</td>
                                                 <td class="text-center">
-                                                    <form action="{{ route('evaluations.destroy', $evaluation->id) }}" method="POST">
+                                                    @if ($evaluation->status === 'Pending')
+                                                        <span
+                                                            class="badge badge-pill badge-warning">{{ $evaluation->status }}</span>
+                                                    @elseif($evaluation->status === 'Ditolak')
+                                                        <span
+                                                            class="badge badge-pill badge-danger">{{ $evaluation->status }}</span>
+                                                    @else
+                                                        <span
+                                                            class="badge badge-pill badge-success">{{ $evaluation->status }}</span>
+                                                    @endif
+                                                </td>
+                                                <td class="text-center">
+                                                    <form action="{{ route('evaluations.destroy', $evaluation->id) }}"
+                                                        method="POST">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <a href="{{ route('evaluations.edit', $evaluation->id) }}" class="btn btn-info btn-sm rounded">Edit</a>
+                                                        <a href="{{ route('evaluations.edit', $evaluation->id) }}"
+                                                            class="btn btn-info btn-sm rounded">Edit</a>
                                                         <button onclick="return confirm('Ingin menghapus data?')"
-                                                        class="btn btn-danger btn-sm rounded delete-confirm">Hapus</button>
+                                                            class="btn btn-danger btn-sm rounded delete-confirm">Hapus</button>
                                                     </form>
                                                 </td>
                                             </tr>

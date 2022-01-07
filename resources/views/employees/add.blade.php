@@ -37,8 +37,8 @@
                                             </select>
                                         </div>
                                         <div class="col-md-6 form-group">
-                                            <label>Umur</label>
-                                            <input class="form-control" type="text" name="age" placeholder="Umur"
+                                            <label>Tanggal Lahir</label>
+                                            <input class="form-control" type="date" name="age" placeholder="Umur"
                                                 required>
                                         </div>
                                         <div class="col-md-6 form-group">
@@ -53,9 +53,9 @@
                                             </select>
                                         </div>
                                         <div class="col-md-6 form-group">
-                                            <label>Jabatan</label>
+                                            <label>Divisi</label>
                                             <select name="sub_division_id" class="form-control" required>
-                                                <option value="" selected>-- Pilih Jabatan --</option>
+                                                <option value="" selected>-- Pilih Divisi --</option>
                                                 @foreach ($sub_divisions as $sub_division)
                                                     <option value="{{ $sub_division->id }}">{{ $sub_division->name }}
                                                     </option>
@@ -70,7 +70,7 @@
                                     </div>
                                     <button class="btn btn-success btn-sm rounded">Simpan</button>
                                     <a href="{{ route('users.index') }}"
-                                        class="btn btn-default btn-sm rounded">Kembali</a>
+                                        class="btn btn-secondary btn-sm rounded">Kembali</a>
                                 </form>
                             </div>
                         </div>

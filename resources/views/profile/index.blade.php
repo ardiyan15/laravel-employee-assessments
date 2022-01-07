@@ -5,7 +5,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Tambah User</h1>
+                        <h1>Info User</h1>
                     </div>
                 </div>
             </div>
@@ -16,38 +16,28 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <form action="{{ route('users.store') }}" method="POST">
+                                <form action="{{ route('profile.update', Auth::user()->id) }}" method="POST">
                                     @csrf
+                                    @method('PATCH')
                                     <div class="row">
                                         <div class="col-md-6 form-group">
                                             <label for="">Nama Lengkap</label>
                                             <input class="form-control" type="text" name="fullname"
-                                                placeholder="Nama Lengkap" required>
+                                                placeholder="Nama Lengkap" required value="{{ Auth::user()->fullname }}">
                                         </div>
                                         <div class="col-md-6 form-group">
                                             <label for="">Username</label>
                                             <input class="form-control" type="text" name="username" placeholder="username"
-                                                required>
+                                                required value="{{ Auth::user()->username }}">
                                         </div>
                                         <div class="col-md-6 form-group">
-                                            <label for="">Password</label>
+                                            <label for="">Password</label> <small>( Isi password jika ingin mengubah
+                                                )</small>
                                             <input class="form-control" type="password" name="password"
-                                                placeholder="password" required>
-                                        </div>
-                                        <div class="col-md-6 form-group">
-                                            <label for="">Roles</label>
-                                            <select name="roles" class="form-control" required>
-                                                <option value="" selected>-- Pilih Roles --</option>
-                                                <option value="hrd">HRD</option>
-                                                <option value="supervisor">Supervisor</option>
-                                                <option value="manager">Manager</option>
-                                                <option value="direktur">Direktur</option>
-                                            </select>
+                                                placeholder="password">
                                         </div>
                                     </div>
-                                    <button class="btn btn-success btn-sm rounded">Simpan</button>
-                                    <a href="{{ route('users.index') }}"
-                                        class="btn btn-secondary btn-sm rounded">Kembali</a>
+                                    <button class="btn btn-success btn-sm rounded">Update</button>
                                 </form>
                             </div>
                         </div>

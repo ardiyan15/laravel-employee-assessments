@@ -5,7 +5,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Tambah Karyawan</h1>
+                        <h1>Edit Karyawan</h1>
                     </div>
                 </div>
             </div>
@@ -48,16 +48,16 @@
                                             </select>
                                         </div>
                                         <div class="col-md-6 form-group">
-                                            <label>Umur</label>
-                                            <input class="form-control" type="text" name="age" placeholder="Umur" required
-                                                value="{{ $employee->age }}">
+                                            <label>Tanggal Lahir</label>
+                                            <input class="form-control" type="date" name="age" placeholder="Umur" required
+                                                value="{{ $employee->birth_date }}">
                                         </div>
                                         <div class="col-md-6 form-group">
                                             <label>Agama</label>
                                             <select name="religion" class="form-control" required>
                                                 <option value="">-- Pilih Agama --</option>
                                                 @foreach ($religions as $religion)
-                                                    @if ($religion['name'] === $employee->religion)
+                                                    @if ($religion['value'] === $employee->religion)
                                                         <option value="{{ $religion['value'] }}" selected>
                                                             {{ $religion['name'] }}</option>
                                                     @else
@@ -86,24 +86,13 @@
                                             </select>
                                         </div>
                                         <div class="col-md-6 form-group">
-                                            <label>Status</label>
-                                            <select name="status" class="form-control" required>
-                                                <option value="">-- Pilih Jabatan --</option>
-                                                @if ($employee->status === 'Aktif')
-                                                    <option value="Aktif" selected>Aktif</option>
-                                                @else
-                                                    <option value="Tidak Aktif">Tidak Aktif</option>
-                                                @endif
-                                            </select>
-                                        </div>
-                                        <div class="col-md-6 form-group">
                                             <label>Alamat Lengkap</label>
                                             <textarea class="form-control" name="address" id="" cols="30" rows="4"
                                                 placeholder="Alamat Lengkap">{{ $employee->address }}</textarea>
                                         </div>
                                     </div>
                                     <button class="btn btn-success btn-sm rounded">Simpan</button>
-                                    <a href="{{ route('users.index') }}"
+                                    <a href="{{ route('employees.index') }}"
                                         class="btn btn-default btn-sm rounded">Kembali</a>
                                 </form>
                             </div>

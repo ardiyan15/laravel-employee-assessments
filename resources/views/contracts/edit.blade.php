@@ -37,10 +37,20 @@
                                                 @endforeach
                                             </select>
                                         </div>
+                                        <div class="col-md-6 form-group">
+                                            <label for="">Mulai Kontrak</label>
+                                            <input type="date" name="start_date" class="form-control"
+                                                value="{{ $contract->start_date }}">
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label for="">Akhir Kontrak</label>
+                                            <input type="date" name="end_date" class="form-control"
+                                                value="{{ $contract->end_date }}">
+                                        </div>
                                         <div class="col-md-12">
                                             <textarea name="content" id="content" placeholder="Kontrak Karyawan">
-                                                                        {{ $contract->content }}
-                                                                    </textarea>
+                                                                                    {{ $contract->content }}
+                                                                                </textarea>
                                         </div>
                                     </div>
                                     <div class="mt-2">

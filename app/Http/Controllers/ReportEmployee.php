@@ -49,7 +49,8 @@ class ReportEmployee extends Controller
             $data = [
                 'menu' => $this->menu,
                 'sub_menu' => 'status',
-                'employees' => $employees
+                'employees' => $employees,
+                'status' => $request->status
             ];
 
             return view('reports.status')->with($data);
@@ -58,7 +59,8 @@ class ReportEmployee extends Controller
             $data = [
                 'menu' => $this->menu,
                 'sub_menu' => 'status',
-                'employees' => $employees
+                'employees' => $employees,
+                'status' => ''
             ];
             return view('reports.status')->with($data);
         }
@@ -69,6 +71,14 @@ class ReportEmployee extends Controller
         $employees = Employees::with('sub_division')->where('sub_division_id', $data)->get();
 
         $pdf = PDF::loadview('reports.print', ['employees' => $employees]);
+        return $pdf->stream();
+    }
+
+    public function printStatus($data)
+    {
+        $employees = Employees::with('sub_division')->where('status', $data)->get();
+
+        $pdf = PDF::loadview('reports.printStatus', ['employees' => $employees]);
         return $pdf->stream();
     }
 }

@@ -27,7 +27,7 @@
                                             <th class="text-center">NIP</th>
                                             <th class="text-center">Karyawan</th>
                                             <th class="text-center">Jabatan</th>
-                                            <th class="text-center">Tanggal Dibuat</th>
+                                            <th class="text-center">Sisa Kontrak</th>
                                             <th class="text-center">Opsi</th>
                                         </tr>
                                     </thead>
@@ -39,7 +39,26 @@
                                                 <td class="text-center">{{ $contract->employee->fullname }}</td>
                                                 <td class="text-center">{{ $contract->employee->sub_division->name }}
                                                 </td>
-                                                <td class="text-center">{{ $contract->created_at }}</td>
+                                                <td class="text-center">
+                                                    @if (\Carbon\Carbon::now() > $contract->end_date && $contract->is_permanent !== 1)
+                                                        <span class="badge badge-pill badge-danger">Kontrak Sudah
+                                                            Habis</span>
+                                                    @elseif($contract->is_permanent == 1)
+                                                        <span class="badge badge-pill badge-success">Karyawan Tetap</span>
+                                                    @else
+                                                        @if (\Carbon\Carbon::now()->diffInDays(\Carbon\Carbon::parse($contract->end_date)) >= 30)
+                                                            <span class="badge badge-pill badge-info">
+                                                                {{ \Carbon\Carbon::now()->diffInDays(\Carbon\Carbon::parse($contract->end_date)) }}
+                                                                Hari
+                                                            </span>
+                                                        @else
+                                                            <span class="badge badge-pill badge-warning">
+                                                                {{ \Carbon\Carbon::now()->diffInDays(\Carbon\Carbon::parse($contract->end_date)) }}
+                                                                Hari
+                                                            </span>
+                                                        @endif
+                                                    @endif
+                                                </td>
                                                 <td class="text-center">
                                                     <form action="{{ route('contracts.destroy', $contract->id) }}"
                                                         method="POST">

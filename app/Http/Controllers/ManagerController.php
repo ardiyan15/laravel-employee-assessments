@@ -20,7 +20,7 @@ class ManagerController extends Controller
             'menu' => $this->menu,
             'sub_menu' => $this->sub_menu,
             'divisions' => Sub_divisions::orderBy('id', 'DESC')->get(),
-            'users' => User::where('roles', 'manager')->orderBy('id', 'DESC')->get(),
+            'users' => User::where('roles', 'Manager')->orderBy('id', 'DESC')->get(),
             'managers' => $managers
         ];
 

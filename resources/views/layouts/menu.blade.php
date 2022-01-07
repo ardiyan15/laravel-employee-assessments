@@ -25,24 +25,88 @@
                         </a>
                     @endif
                 </li>
-                @if ($menu === 'master')
-                    <li class="nav-item menu-open">
-                        <a href="#" class="nav-link active">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                <li class="nav-item">
+                    @if ($menu === 'profile')
+                        <a href="{{ route('profile.index') }}" class="nav-link active"><i
+                                class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
-                                Data Master
-                                <i class="right fas fa-angle-down"></i>
+                                User Profile
                             </p>
                         </a>
                     @else
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <a href="{{ route('profile.index') }}" class="nav-link"><i
+                                class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
-                                Data Master
-                                <i class="right fas fa-angle-left"></i>
+                                User Profile
                             </p>
                         </a>
+                    @endif
+                </li>
+                @if (Auth::user()->roles === 'manager' || Auth::user()->roles === 'admin')
+                    @if ($menu == 'approval')
+                        <li class="nav-item menu-open">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Approval
+                                    <i class="right fas fa-angle-down"></i>
+                                </p>
+                            </a>
+                        @else
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Approval
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                    @endif
+                @endif
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('approvals.index') }}" class="nav-link @if ($sub_menu === 'evaluation_approval') active @endif">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Approval Penilaian</p>
+                        </a>
+                    </li>
+                </ul>
+                </li>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('evaluations.index') }}" class="nav-link @if ($sub_menu === 'nilai') active @endif">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Penilaian Karyawan</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('contracts.index') }}" class="nav-link @if ($sub_menu === 'kontrak') active @endif">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Kontrak Karyawan</p>
+                        </a>
+                    </li>
+                </ul>
+                </li>
+                @if (Auth::user()->roles === 'hrd' || Auth::user()->roles === 'admin')
+                    @if ($menu === 'master')
+                        <li class="nav-item menu-open">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Data Master
+                                    <i class="right fas fa-angle-down"></i>
+                                </p>
+                            </a>
+                        @else
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Data Master
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                    @endif
                 @endif
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
@@ -77,45 +141,57 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{ route('supervisors.index') }}" class="nav-link @if ($sub_menu === 'supervisor') active @endif">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Supervisor</p>
+                        </a>
+                    </li>
+                    {{-- <li class="nav-item">
                         <a href="{{ route('managers.index') }}" class="nav-link @if ($sub_menu === 'manager') active @endif">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Manager</p>
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
                 </li>
-                @if ($menu === 'transaksi')
-                    <li class="nav-item menu-open">
-                        <a href="#" class="nav-link active">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
-                            <p>
-                                Transaksi
-                                <i class="right fas fa-angle-down"></i>
-                            </p>
-                        </a>
-                    @else
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
-                            <p>
-                                Transaksi
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
+                @if (Auth::user()->roles === 'supervisor' || Auth::user()->roles === 'admin' || Auth::user()->roles === 'hrd')
+                    @if ($menu === 'transaksi')
+                        <li class="nav-item menu-open">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Transaksi
+                                    <i class="right fas fa-angle-down"></i>
+                                </p>
+                            </a>
+                        @else
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Transaksi
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                    @endif
                 @endif
                 <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="{{ route('evaluations.index') }}" class="nav-link @if ($sub_menu === 'nilai') active @endif">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Penilaian Karyawan</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('contracts.index') }}" class="nav-link @if ($sub_menu === 'kontrak') active @endif">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Kontrak Karyawan</p>
-                        </a>
-                    </li>
+                    @if (Auth::user()->roles !== 'hrd')
+                        <li class="nav-item">
+                            <a href="{{ route('evaluations.index') }}" class="nav-link @if ($sub_menu === 'nilai') active @endif">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Penilaian Karyawan</p>
+                            </a>
+                        </li>
+                    @endif
+                    @if (Auth::user()->roles === 'hrd' || Auth::user()->roles === 'admin')
+                        <li class="nav-item">
+                            <a href="{{ route('contracts.index') }}" class="nav-link @if ($sub_menu === 'kontrak') active @endif">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Kontrak Karyawan</p>
+                            </a>
+                        </li>
+                    @endif
                 </ul>
                 </li>
                 @if ($menu === 'laporan')

@@ -32,11 +32,11 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 <script>
-   var konten = document.getElementById("content");
-     CKEDITOR.replace(konten,{
-     language:'en-gb'
-   });
-   CKEDITOR.config.allowedContent = true;
+    var konten = document.getElementById("content");
+    CKEDITOR.replace(konten, {
+        language: 'en-gb'
+    });
+    CKEDITOR.config.allowedContent = true;
 </script>
 
 <script>

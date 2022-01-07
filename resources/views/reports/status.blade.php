@@ -28,6 +28,10 @@
                                             <button class="btn btn-primary btn-sm rounded mt-2">Submit</button>
                                             <a href="{{ route('report.employeestatus') }}"
                                                 class="btn btn-secondary btn-sm rounded mt-2">Reset</a>
+                                            @if ($status)
+                                                <a href="{{ route('reports.printStatus', $status) }}"
+                                                    class="btn btn-success btn-sm rounded mt-2" target="_blank">Print</a>
+                                            @endif
                                         </form>
                                     </div>
                                 </div>
@@ -39,6 +43,7 @@
                                             <th class="text-center">Nama Karyawan</th>
                                             <th class="text-center">Jabatan</th>
                                             <th class="text-center">Alamat</th>
+                                            <th class="text-center">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -49,6 +54,11 @@
                                                 <td class="text-center">{{ $employee->fullname }}</td>
                                                 <td class="text-center">{{ $employee->sub_division->name }}</td>
                                                 <td class="text-center">{{ $employee->address }}</td>
+                                                @if ($employee->status === 'active')
+                                                    <td class="text-center"> In </td>
+                                                @else
+                                                    <td class="text-center"> Off </td>
+                                                @endif
                                             </tr>
                                         @empty
                                             {{ null }}

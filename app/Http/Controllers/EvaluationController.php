@@ -27,8 +27,8 @@ class EvaluationController extends Controller
     public function create()
     {
         $division_id = [];
-        foreach (Auth::user()->managers as $manager) {
-            array_push($division_id, $manager->sub_division_id);
+        foreach (Auth::user()->supervisors as $supervisor) {
+            array_push($division_id, $supervisor->sub_division_id);
         }
 
         $data = [
@@ -45,6 +45,31 @@ class EvaluationController extends Controller
         DB::beginTransaction();
         try {
             $sum = $request->value1 + $request->value2 + $request->value3 + $request->value4 + $request->value5;
+
+            $result = $sum / 5;
+
+            if ($result > 3.66 && $result <= 4.00) {
+                $grade = 'A';
+            } else if ($result > 3.33 && $result < 3.66) {
+                $grade = 'A-';
+            } else if ($result > 3.00 && $result < 3.33) {
+                $grade = 'B+';
+            } else if ($result > 2.66 && $result < 3.00) {
+                $grade = 'B';
+            } else if ($result > 2.33 && $result < 2.66) {
+                $grade = 'B-';
+            } else if ($result > 2.00 && $result < 2.33) {
+                $grade = 'C+';
+            } else if ($result > 1.66 && $result < 2.00) {
+                $grade = 'C';
+            } else if ($result > 1.33 && $result < 1.66) {
+                $grade = 'C-';
+            } else if ($result > 1.00 && $result < 1.33) {
+                $grade = 'D+';
+            } else {
+                $grade = 'D';
+            }
+
             Evaluations::create([
                 'value_1' => $request->value1,
                 'value_2' => $request->value2,
@@ -52,6 +77,7 @@ class EvaluationController extends Controller
                 'value_4' => $request->value4,
                 'value_5' => $request->value5,
                 'sum' => $sum,
+                'grade' => $grade,
                 'memo' => $request->memo,
                 'employee_id' => $request->employee_id,
                 'user_id' => Auth::user()->id

@@ -42,7 +42,7 @@ class EmployeeController extends Controller
                 'nip' => $request->nip,
                 'fullname' => $request->fullname,
                 'gender' => $request->gender,
-                'age' => $request->age,
+                'birth_date' => $request->age,
                 'religion' => $request->religion,
                 'address' => $request->address,
                 'status' => 'active',
@@ -117,10 +117,9 @@ class EmployeeController extends Controller
         $employee->nip = $request->nip;
         $employee->fullname = $request->fullname;
         $employee->gender = $request->gender;
-        $employee->age = $request->age;
+        $employee->birth_date = $request->age;
         $employee->religion = $request->religion;
         $employee->address = $request->address;
-        $employee->status = $request->status;
         $employee->sub_division_id = $request->sub_division_id;
 
         $employee->save();

@@ -16,8 +16,8 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <a href="{{ route('contracts.print', $contract->id) }}" target="_blank"
-                                    class="btn btn-primary btn-sm rounded pull-right">Print</a>
+                                {{-- <a href="{{ route('contracts.print', $contract->id) }}" target="_blank"
+                                    class="btn btn-primary btn-sm rounded pull-right">Print</a> --}}
                                 <form action="{{ route('contracts.store') }}" method="POST">
                                     @csrf
                                     <div class="row">
@@ -26,15 +26,11 @@
                                             <p for="">{{ $contract->employee->fullname }}</p>
                                         </div>
                                         <hr width="50%">
-                                        <div class="col-md-12">
+                                        <div class="col-md-12" id="content">
+                                            {{-- <textarea name="" id="content"> --}}
                                             {!! $contract->content !!}
-
+                                            {{-- </textarea> --}}
                                         </div>
-                                    </div>
-                                    <div class="mt-2">
-                                        <button class="btn btn-success btn-sm rounded">Simpan</button>
-                                        <a href="{{ route('contracts.index') }}"
-                                            class="btn btn-secondary btn-sm rounded">Kembali</a>
                                     </div>
                                 </form>
                             </div>

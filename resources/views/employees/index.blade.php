@@ -27,7 +27,8 @@
                                             <th class="text-center">#</th>
                                             <th class="text-center">NIP</th>
                                             <th class="text-center">Nama Karyawan</th>
-                                            <th class="text-center">Jabatan</th>
+                                            <th class="text-center">Tanggal Lahir</th>
+                                            <th class="text-center">Divisi</th>
                                             <th class="text-center">Alamat</th>
                                             <th class="text-center">Tanggal Dibuat</th>
                                             <th class="text-center">Opsi</th>
@@ -39,6 +40,7 @@
                                                 <td class="text-center">{{ $loop->iteration }}</td>
                                                 <td class="text-center">{{ $employee->nip }}</td>
                                                 <td class="text-center">{{ $employee->fullname }}</td>
+                                                <td class="text-center">{{ $employee->birth_date }}</td>
                                                 <td class="text-center">{{ $employee->sub_division->name }}</td>
                                                 <td class="text-center">{{ $employee->address }}</td>
                                                 <td class="text-center">{{ substr($employee->created_at, 0, 10) }}
