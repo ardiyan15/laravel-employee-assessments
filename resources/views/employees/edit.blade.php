@@ -22,8 +22,8 @@
                                     <div class="row">
                                         <div class="col-md-6 form-group">
                                             <label>NIP</label>
-                                            <input class="form-control" type="text" name="nip" placeholder="NIP" required
-                                                value="{{ $employee->nip }}">
+                                            <input class="form-control" type="number" name="nip" placeholder="NIP"
+                                                required value="{{ $employee->nip }}" maxlength="10">
                                         </div>
                                         <div class="col-md-6 form-group">
                                             <label>Nama Lengkap</label>
@@ -89,6 +89,18 @@
                                             <label>Alamat Lengkap</label>
                                             <textarea class="form-control" name="address" id="" cols="30" rows="4"
                                                 placeholder="Alamat Lengkap">{{ $employee->address }}</textarea>
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label for="">Status</label>
+                                            <select name="status" class="form-control">
+                                                @if ($employee->status === 'active')
+                                                    <option value="active" selected>In</option>
+                                                    <option value="inacitve">Off</option>
+                                                @else
+                                                    <option value="active">In</option>
+                                                    <option value="inacitve" selected>Off</option>
+                                                @endif
+                                            </select>
                                         </div>
                                     </div>
                                     <button class="btn btn-success btn-sm rounded">Simpan</button>

@@ -84,7 +84,7 @@ class UserController extends Controller
         $user->username = $request->username;
         $user->fullname = $request->fullname;
         if ($request->password) {
-            $user->passowrd = $request->password;
+            $user->password = $request->password;
         }
         $user->roles = $request->roles;
         $user->save();

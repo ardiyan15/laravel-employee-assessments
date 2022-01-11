@@ -31,6 +31,7 @@
                                             <th class="text-center">Divisi</th>
                                             <th class="text-center">Alamat</th>
                                             <th class="text-center">Tanggal Dibuat</th>
+                                            <th class="text-center">Status</th>
                                             <th class="text-center">Opsi</th>
                                         </tr>
                                     </thead>
@@ -46,6 +47,13 @@
                                                 <td class="text-center">{{ substr($employee->created_at, 0, 10) }}
                                                 </td>
                                                 <td class="text-center">
+                                                    @if ($employee->status === 'active')
+                                                        In
+                                                    @else
+                                                        Off
+                                                    @endif
+                                                </td>
+                                                <td class="text-center" width="150">
                                                     <form action="{{ route('employees.destroy', $employee->id) }}"
                                                         method="POST">
                                                         @csrf

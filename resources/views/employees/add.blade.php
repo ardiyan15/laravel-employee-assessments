@@ -21,7 +21,8 @@
                                     <div class="row">
                                         <div class="col-md-6 form-group">
                                             <label>NIP</label>
-                                            <input class="form-control" type="text" name="nip" placeholder="NIP" required>
+                                            <input class="form-control" type="number" name="nip" placeholder="NIP"
+                                                required maxlength="10">
                                         </div>
                                         <div class="col-md-6 form-group">
                                             <label>Nama Lengkap</label>
@@ -69,7 +70,7 @@
                                         </div>
                                     </div>
                                     <button class="btn btn-success btn-sm rounded">Simpan</button>
-                                    <a href="{{ route('users.index') }}"
+                                    <a href="{{ route('employees.index') }}"
                                         class="btn btn-secondary btn-sm rounded">Kembali</a>
                                 </form>
                             </div>

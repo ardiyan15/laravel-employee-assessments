@@ -93,7 +93,8 @@
                             <input type="hidden" name="status" value="Approve">
                             <div class="form-group">
                                 <label for="">Keterangan Setuju</label>
-                                <textarea class="form-control" name="keterangan" id="" cols="30" rows="10"></textarea>
+                                <textarea class="form-control" name="keterangan" id="" cols="30" rows="10"
+                                    required></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -123,7 +124,8 @@
                             <input type="hidden" name="status" value="Ditolak">
                             <div class="form-group">
                                 <label for="">Keterangan Ditolak</label>
-                                <textarea class="form-control" name="keterangan" id="" cols="30" rows="10"></textarea>
+                                <textarea class="form-control" name="keterangan" id="" cols="30" rows="10"
+                                    required></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">

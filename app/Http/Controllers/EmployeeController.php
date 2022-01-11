@@ -121,6 +121,7 @@ class EmployeeController extends Controller
         $employee->religion = $request->religion;
         $employee->address = $request->address;
         $employee->sub_division_id = $request->sub_division_id;
+        $employee->status = $request->status;
 
         $employee->save();
 
