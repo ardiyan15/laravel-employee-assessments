@@ -146,6 +146,12 @@
                             <p>Supervisor</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('letters.index') }}" class="nav-link @if ($sub_menu === 'letters') active @endif">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Template Surat Kontrak</p>
+                        </a>
+                    </li>
                     {{-- <li class="nav-item">
                         <a href="{{ route('managers.index') }}" class="nav-link @if ($sub_menu === 'manager') active @endif">
                             <i class="far fa-circle nav-icon"></i>

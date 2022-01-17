@@ -30,6 +30,10 @@
                                             </select>
                                         </div>
                                         <div class="col-md-12 form-group">
+                                            <label for="">Gaji</label>
+                                            <input type="text" name="salary" class="form-control" placeholder="Gaji">
+                                        </div>
+                                        <div class="col-md-12 form-group">
                                             <label for="">Jenis Kontrak</label>
                                             <select name="" id="type_contract" class="form-control">
                                                 <option value="">-- Pilih Kontrak --</option>
@@ -45,9 +49,9 @@
                                             <label for="">Akhir Kontrak</label>
                                             <input type="date" name="end_date" id="end_date" class="form-control">
                                         </div>
-                                        <div class="col-md-12 form-group">
-                                            <label>Isi Kontrak</label>
-                                            <textarea class="form-control" name="content" id="content"
+                                        {{-- <div class="col-md-12 form-group">
+                                            <label>Isi Kontrak</label> --}}
+                                        {{-- <textarea class="form-control" name="content" id="content"
                                                 placeholder="Kontrak Karyawan" cols="10">
                                                                                                     <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<img alt="" src="http://localhost:8000/image/kop_surat.png" /></p>
 
@@ -196,8 +200,8 @@
 
                                                     <p style="text-align:justify">&nbsp;</p>
 
-                                                                                                </textarea>
-                                        </div>
+                                                                                                </textarea> --}}
+                                        {{-- </div> --}}
                                     </div>
                                     <div class="mt-2">
                                         <button class="btn btn-success btn-sm rounded">Simpan</button>

@@ -37,20 +37,23 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="col-md-6 form-group">
+                                        <div class="col-md-12 form-group">
+                                            <label for="">Jenis Kontrak</label>
+                                            <select name="contract_type" id="type_contract" class="form-control">
+                                                <option value="">-- Pilih Kontrak --</option>
+                                                <option value="permanent" @if ($contract->is_permanent === 1) selected @endif>Tetap</option>
+                                                <option value="not_permanent" @if ($contract->is_permanent !== 1) selected @endif>Tidak Tetap</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 form-group" id="start_div" @if ($contract->is_permanent === 1) style="display: none;" @endif>
                                             <label for="">Mulai Kontrak</label>
                                             <input type="date" name="start_date" class="form-control"
                                                 value="{{ $contract->start_date }}">
                                         </div>
-                                        <div class="col-md-6 form-group">
+                                        <div class="col-md-6 form-group" id="end_div" @if ($contract->is_permanent === 1) style="display: none;" @endif>
                                             <label for="">Akhir Kontrak</label>
                                             <input type="date" name="end_date" class="form-control"
                                                 value="{{ $contract->end_date }}">
-                                        </div>
-                                        <div class="col-md-12">
-                                            <textarea name="content" id="content" placeholder="Kontrak Karyawan">
-                                                                                    {{ $contract->content }}
-                                                                                </textarea>
                                         </div>
                                     </div>
                                     <div class="mt-2">
@@ -67,3 +70,25 @@
         </section>
     </div>
 @endsection
+
+
+@push('scripts')
+    <script>
+        $("#type_contract").on('change', function() {
+            let type = $(this).val()
+            if (type !== 'permanent') {
+                $("#start_div").removeAttr('style')
+                $("#end_div").removeAttr('style')
+            } else {
+                $("#start_div").css('display', 'none')
+                $("#end_div").css('display', 'none')
+            }
+        })
+
+        $("#employee").on('change', function() {
+            let employeeName = $("#employee option:selected").text().trim()
+            console.log(employeeName)
+            $("#employee_name").text(employeeName)
+        })
+    </script>
+@endpush

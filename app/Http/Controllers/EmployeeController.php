@@ -36,12 +36,18 @@ class EmployeeController extends Controller
 
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'nip' => 'unique:employees|max:10,',
+            'address' => 'required'
+        ]);
         DB::beginTransaction();
         try {
             Employees::create([
-                'nip' => $request->nip,
+                'nip' => $validated['nip'],
                 'fullname' => $request->fullname,
                 'gender' => $request->gender,
+                'phone' => $request->phone,
+                'birth_place' => $request->birth_place,
                 'birth_date' => $request->age,
                 'religion' => $request->religion,
                 'address' => $request->address,
@@ -52,6 +58,7 @@ class EmployeeController extends Controller
             return redirect('employees')->with('success', 'Data berhasil ditambahkan');
         } catch (\Throwable $err) {
             DB::rollBack();
+            throw $err;
             return back()->with('error', 'Data gagal ditambahkan');
         }
     }

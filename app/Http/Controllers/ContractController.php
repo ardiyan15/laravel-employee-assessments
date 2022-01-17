@@ -40,6 +40,13 @@ class ContractController extends Controller
 
     public function store(Request $request)
     {
+        $no_contract = Contracts::orderBy('id', 'DESC')->pluck('no_contract')->first();
+        if ($no_contract === '') {
+            $final_number_contract = '0000';
+        } else {
+            $result = (int)$no_contract + 1;
+            $final_number_contract = sprintf('%04d', $result);
+        }
         DB::beginTransaction();
         try {
             if ($request->start_date == '' && $request->end_date == '') {
@@ -48,11 +55,12 @@ class ContractController extends Controller
                 $permanent = false;
             }
             Contracts::create([
-                'content' => $request->content,
+                'no_contract' => $final_number_contract,
+                'salary' => $request->salary,
                 'employee_id' => $request->employee_id,
                 'start_date' => $request->start_date,
                 'end_date' => $request->end_date,
-                'is_permanent' => $permanent
+                'is_permanent' => $permanent,
             ]);
             DB::commit();
             return redirect('contracts')->with('success', 'Kontrak berhasil dibuat');
@@ -65,13 +73,18 @@ class ContractController extends Controller
 
     public function show($id)
     {
+        $contract = Contracts::with('employee')->findOrFail($id);
         $data = [
             'menu' => $this->menu,
             'sub_menu' => $this->sub_menu,
-            'contract' => Contracts::with('employee')->where('id', $id)->first()
+            'contract' => $contract
         ];
 
-        return view('contracts.detail')->with($data);
+        if ($contract->is_permanent === 1) {
+            return view('contracts.detail_permanent')->with($data);
+        } else {
+            return view('contracts.detail')->with($data);
+        }
     }
 
     public function edit($id)
@@ -94,10 +107,18 @@ class ContractController extends Controller
         $contract = Contracts::findOrFail($id);
         DB::beginTransaction();
         try {
+            $start_date = $request->start_date;
+            $end_date = $request->end_date;
+            $is_permanent = 0;
+            if ($request->contract_type === 'permanent') {
+                $start_date = null;
+                $end_date = null;
+                $is_permanent = 1;
+            }
+            $contract->is_permanent = $is_permanent;
             $contract->employee_id = $request->employee_id;
-            $contract->content = $request->content;
-            $contract->start_date = $request->start_date;
-            $contract->end_date = $request->end_date;
+            $contract->start_date = $start_date;
+            $contract->end_date = $end_date;
             $contract->save();
             DB::commit();
             return redirect('contracts')->with('success', 'Kontrak berhasil diubah');
@@ -117,9 +138,18 @@ class ContractController extends Controller
 
     public function print($id)
     {
-        $contract = Contracts::with('employee')->findOrFail($id);
+        $contract = Contracts::with(['employee' => function ($employee) {
+            $employee->with(['sub_division' => function ($sub_division) {
+                $sub_division->with('divisions');
+            }]);
+        }])->findOrFail($id);
 
-        $pdf = PDF::loadview('contracts.print', ['contract' => $contract]);
+        if ($contract->is_permanent === 1) {
+            $pdf = PDF::loadview('contracts.print_permanent', ['contract' => $contract]);
+        } else {
+            $pdf = PDF::loadview('contracts.print', ['contract' => $contract]);
+        }
+
         return $pdf->stream();
     }
 }
