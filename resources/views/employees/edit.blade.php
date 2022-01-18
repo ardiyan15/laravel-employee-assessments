@@ -31,6 +31,11 @@
                                                 placeholder="Nama Lengkap" required value="{{ $employee->fullname }}">
                                         </div>
                                         <div class="col-md-6 form-group">
+                                            <label for="">No Handphone</label>
+                                            <input type="number" class="form-control" name="phone"
+                                                placeholder="No Handphone" required value="{{ $employee->phone }}">
+                                        </div>
+                                        <div class="col-md-6 form-group">
                                             <label>Jenis Kelamin</label>
                                             <select name="gender" class="form-control" required>
                                                 <option value="">-- Pilih Jenis Kelamin --</option>
@@ -46,6 +51,11 @@
                                                 <option value="Laki - Laki">Laki - Laki</option>
                                                 <option value="Perempuan">Perempuan</option>
                                             </select>
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label for="">Tempat Lahir</label>
+                                            <input type="text" class="form-control" name="birth_place"
+                                                placeholder="Tempat Lahir" value="{{ $employee->birth_place }}">
                                         </div>
                                         <div class="col-md-6 form-group">
                                             <label>Tanggal Lahir</label>
@@ -86,11 +96,6 @@
                                             </select>
                                         </div>
                                         <div class="col-md-6 form-group">
-                                            <label>Alamat Lengkap</label>
-                                            <textarea class="form-control" name="address" id="" cols="30" rows="4"
-                                                placeholder="Alamat Lengkap">{{ $employee->address }}</textarea>
-                                        </div>
-                                        <div class="col-md-6 form-group">
                                             <label for="">Status</label>
                                             <select name="status" class="form-control">
                                                 @if ($employee->status === 'active')
@@ -101,6 +106,11 @@
                                                     <option value="inacitve" selected>Off</option>
                                                 @endif
                                             </select>
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label>Alamat Lengkap</label>
+                                            <textarea class="form-control" name="address" id="" rows="4"
+                                                placeholder="Alamat Lengkap">{{ $employee->address }}</textarea>
                                         </div>
                                     </div>
                                     <button class="btn btn-success btn-sm rounded">Simpan</button>

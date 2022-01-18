@@ -62,8 +62,10 @@
                                                 <td class="text-center">
                                                     <form action="{{ route('contracts.destroy', $contract->id) }}"
                                                         method="POST">
-                                                        <a href="{{ route('contracts.edit', $contract->id) }}"
-                                                            class="btn btn-info btn-sm rounded">Ubah</a>
+                                                        @if ($contract->is_permanent !== 1)
+                                                            <a href="{{ route('contracts.edit', $contract->id) }}"
+                                                                class="btn btn-info btn-sm rounded">Ubah</a>
+                                                        @endif
                                                         @csrf
                                                         @method('DELETE')
                                                         <button onclick="return confirm('Ingin menghapus data?')"
