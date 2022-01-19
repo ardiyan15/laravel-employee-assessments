@@ -14,11 +14,11 @@ class Supervisor extends Model
 
     public function users()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id')->withTrashed();
     }
 
     public function divisions()
     {
-        return $this->belongsTo(Sub_divisions::class, 'sub_division_id');
+        return $this->belongsTo(Sub_divisions::class, 'sub_division_id')->withTrashed();
     }
 }

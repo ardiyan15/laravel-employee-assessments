@@ -18,7 +18,9 @@
                             <div class="card-body">
                                 <h4 class="text-center" style="margin-left: 10%; font-size: 25px;">SURAT
                                     PERJANJIAN KERJA WAKTU TERTENTU</h4>
-                                <p>Pada hari ini, {{ \Carbon\Carbon::now()->isoFormat('D MMMM Y') }} bertempat di
+                                <p>Pada hari ini,
+                                    {{ \Carbon\Carbon::parse($contract->start_date)->isoFormat('D MMMM Y') }}
+                                    bertempat di
                                     Tangerang, diadakan Perjanjian Kerja
                                     sebagai
                                     berikut:
@@ -242,7 +244,7 @@
                                     tanpa paksaan dari pihak manapun.
                                 </p>
                                 <p style="margin-right: 10%; text-align: right;">Tangerang,
-                                    {{ \Carbon\Carbon::parse($contract->created_at)->isoFormat('D MMMM Y') }}</p>
+                                    {{ \Carbon\Carbon::parse($contract->start_date)->isoFormat('D MMMM Y') }}</p>
                                 <p style="margin-left: 15%; text-align:left;">
                                     Karyawan
                                     <span style="margin-right: 15%;  float:right;">

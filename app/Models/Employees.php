@@ -14,16 +14,16 @@ class Employees extends Model
 
     public function sub_division()
     {
-        return $this->belongsTo(Sub_divisions::class, 'sub_division_id');
+        return $this->belongsTo(Sub_divisions::class, 'sub_division_id')->withTrashed();
     }
 
     public function evaluations()
     {
-        return $this->hasMany(Evaluations::class, 'employee_id');
+        return $this->hasMany(Evaluations::class, 'employee_id')->withTrashed();
     }
 
     public function contract()
     {
-        return $this->hasOne(Contracts::class, 'employee_id');
+        return $this->hasOne(Contracts::class, 'employee_id')->withTrashed();
     }
 }

@@ -14,21 +14,21 @@ class Sub_divisions extends Model
 
     public function divisions()
     {
-        return $this->belongsTo(Divisions::class, 'division_id');
+        return $this->belongsTo(Divisions::class, 'division_id')->withTrashed();
     }
 
     public function employees()
     {
-        return $this->hasMany(Employees::class, 'sub_division_id');
+        return $this->hasMany(Employees::class, 'sub_division_id')->withTrashed();
     }
 
     public function managers()
     {
-        return $this->hasMany(Managers::class, 'sub_division_id');
+        return $this->hasMany(Managers::class, 'sub_division_id')->withTrashed();
     }
 
     public function supervisors()
     {
-        return $this->hasMany(Supervisor::class, 'sub_division_id');
+        return $this->hasMany(Supervisor::class, 'sub_division_id')->withTrashed();
     }
 }

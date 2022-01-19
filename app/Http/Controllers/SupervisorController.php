@@ -71,6 +71,8 @@ class SupervisorController extends Controller
 
     public function destroy($id)
     {
-        //
+        $supervisor = Supervisor::findOrFail($id);
+        $supervisor->delete();
+        return back()->with('success', 'Data berhasil dihapus');
     }
 }

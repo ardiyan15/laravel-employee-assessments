@@ -14,6 +14,6 @@ class Divisions extends Model
 
     public function sub_divisions()
     {
-        return $this->hasMany(Sub_divisions::class, 'division_id');
+        return $this->hasMany(Sub_divisions::class, 'division_id')->withTrashed();
     }
 }

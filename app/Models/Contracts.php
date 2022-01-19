@@ -14,6 +14,6 @@ class Contracts extends Model
 
     public function employee()
     {
-        return $this->belongsTo(Employees::class, 'employee_id');
+        return $this->belongsTo(Employees::class, 'employee_id')->withTrashed();
     }
 }

@@ -14,11 +14,11 @@ class Evaluations extends Model
 
     public function users()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id')->withTrashed();;
     }
 
     public function employees()
     {
-        return $this->belongsTo(Employees::class, 'employee_id');
+        return $this->belongsTo(Employees::class, 'employee_id')->withTrashed();;
     }
 }

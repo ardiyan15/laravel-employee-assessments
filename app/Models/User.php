@@ -47,16 +47,16 @@ class User extends Authenticatable
 
     public function evaluations()
     {
-        return $this->hasMany(Evaluations::class, 'user_id');
+        return $this->hasMany(Evaluations::class, 'user_id')->withTrashed();
     }
 
     public function managers()
     {
-        return $this->hasMany(Managers::class, 'user_id');
+        return $this->hasMany(Managers::class, 'user_id')->withTrashed();
     }
 
     public function supervisors()
     {
-        return $this->hasMany(Supervisor::class, 'user_id');
+        return $this->hasMany(Supervisor::class, 'user_id')->withTrashed();;
     }
 }
