@@ -16,6 +16,8 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
+                                <img src="{{ public_path('image/kop_surat.jpg') }}" width="750"
+                                    style="margin-left: -20px;">
                                 <h4 style=" font-size: 25px; margin-left: 10%;">SURAT PENGANGKATAN KARYAWAN TETAP
                                 </h4>
                                 <h4 style=" font-size: 25px; margin-left: 30%; margin-top: -20px;">No.

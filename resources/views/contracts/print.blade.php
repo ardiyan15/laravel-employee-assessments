@@ -16,7 +16,10 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="text-center" style="margin-left: 10%; font-size: 25px;">SURAT
+                                <img src="{{ public_path('image/kop_surat.jpg') }}" width="750"
+                                    style="margin-left: -20px;">
+                                <h4 class="text-center" style="margin-left: 10%; font-size: 25px;">
+                                    SURAT
                                     PERJANJIAN KERJA WAKTU TERTENTU</h4>
                                 <p>Pada hari ini,
                                     {{ \Carbon\Carbon::parse($contract->start_date)->isoFormat('D MMMM Y') }}
