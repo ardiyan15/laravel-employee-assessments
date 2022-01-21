@@ -79,6 +79,8 @@ class EvaluationController extends Controller
                 'sum' => $sum,
                 'grade' => $grade,
                 'memo' => $request->memo,
+                'status' => 'Pending',
+                'approval_message' => 'null',
                 'employee_id' => $request->employee_id,
                 'user_id' => Auth::user()->id
             ]);
