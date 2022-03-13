@@ -73,6 +73,12 @@
                                                         <a target="_blank"
                                                             href="{{ route('contracts.print', $contract->id) }}"
                                                             class="btn btn-primary btn-sm rounded">Print</a>
+                                                        @if (\Carbon\Carbon::now() > $contract->end_date && $contract->is_permanent !== 1)
+                                                            <a target="_blank"
+                                                                href="{{ route('contract.experience', $contract->id) }}"
+                                                                class="text-center btn btn-success btn-sm rounded">Print
+                                                                Surat Lamaran Kerja</a>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             </tr>

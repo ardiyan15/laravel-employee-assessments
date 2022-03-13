@@ -152,4 +152,16 @@ class ContractController extends Controller
 
         return $pdf->stream();
     }
+
+    public function experience($id)
+    {
+        $contract = Contracts::with(['employee' => function ($employee) {
+            $employee->with(['sub_division' => function ($sub_division) {
+                $sub_division->with('divisions');
+            }]);
+        }])->findOrFail($id);
+
+        $pdf = PDF::loadview('contracts.print_experience', ['contract' => $contract]);
+        return $pdf->stream();
+    }
 }

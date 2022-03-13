@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/contract/print/{id}', [ContractController::class, 'print'])->name('contracts.print');
 Route::get('/report/printStatus/{id}', [ReportEmployee::class, 'printStatus'])->name('reports.printStatus');
+Route::get('/experience/{id}', [ContractController::class, 'experience'])->name('contract.experience');
 Route::resource('/users', UserController::class);
 Route::resource('/divisions', DivisionController::class);
 Route::resource('/subdivisions', SubDivisionsController::class);
